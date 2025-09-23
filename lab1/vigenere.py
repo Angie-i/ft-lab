@@ -8,7 +8,7 @@ def encrypt(plaintext: str, keyword: str) -> str:
     for i in keyword:
         letter=i.upper()
         if 'A' <= letter <= 'Z':
-            shifts.append(ord(num) - ord('A'))
+            shifts.append(ord(letter) - ord('A'))
     if len(shifts)==0:
         return plaintext
     for r in plaintext:
