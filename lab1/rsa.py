@@ -17,12 +17,27 @@ def gcd(a: int, b: int) -> int:
     a, b = b, a%b
   return a
 
-  
-def multiplicative_inverse(e: int, phi:int) -> int:
-  for i in range(1,phi):
-    if (d*e)%phi==1:
-      return d
-  raise ValueError('no inverse num')
+def multiplicative_inverse(e, phi):
+    remainder_prev = e       
+    remainder_curr = phi     
+    coeff_prev = 1           
+    coeff_curr = 0           
+    while remainder_curr != 0:
+        quotient = remainder_prev // remainder_curr
+        temp = remainder_prev
+        remainder_prev = remainder_curr
+      
+        remainder_curr = temp - quotient * remainder_curr
+        temp = coeff_prev
+        coeff_prev = coeff_curr
+        coeff_curr = temp - quotient * coeff_curr
+
+    if remainder_prev != 1:
+        raise ValueError("обратного не существует")
+
+   
+    d = coeff_prev % phi
+    return d
   
 
   
