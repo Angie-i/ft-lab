@@ -94,13 +94,13 @@ class TestVigenere:
     def test_vigenere_encrypt_basic(self):
         """Test basic Vigenere cipher encryption."""
         result = vigenere.encrypt("attack at dawn", "LEMON")
-        expected = "lbfpdu#|#v|{`"
+        expected = "lx!opv$m#-oe$|"
         assert result == expected, f"Expected {expected}, got {result}"
     
     @pytest.mark.skipif(vigenere is None, reason="vigenere module not found")
     def test_vigenere_decrypt_basic(self):
         """Test basic Vigenere cipher decryption."""
-        result = vigenere.decrypt("lbfpdu#|#v|{`", "LEMON")
+        result = vigenere.decrypt("lx!opv$m#-oe$|", "LEMON")
         expected = "attack at dawn"
         assert result == expected, f"Expected {expected}, got {result}"
     
