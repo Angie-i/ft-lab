@@ -1,4 +1,4 @@
-def is_prime(n: int) -> bool:  #алгоритм перебора делителей до кв корня 
+def is_prime(n: int) -> bool:  
   ''' 
   '''
   if n <= 1:
@@ -9,8 +9,7 @@ def is_prime(n: int) -> bool:  #алгоритм перебора делител
         if n % i == 0:
             return False
   return True
-
-
+  
 def gcd(a: int, b: int) -> int:   
   ''' '''
   while b!=0:
@@ -33,15 +32,27 @@ def multiplicative_inverse(e, phi):
         coeff_curr = temp - quotient * coeff_curr
 
     if remainder_prev != 1:
-        raise ValueError("обратного не существует")
+        raise ValueError("обратного нет")
 
    
     d = coeff_prev % phi
     return d
-  
 
-  
-  
-  
+
+def smallest_e(phi):
+    candidate_e = 3             
+    while candidate_e < phi:
+        if  gcd(candidate_e, phi) == 1:
+            return candidate_e 
+        else:
+            candidate_e = candidate_e + 2  
+   
 def generate_keypair(p: int, q: int) -> tuple[tuple[int, int], tuple[int, int]]:
-    ''' '''
+    if p!=q and is_prime(p)==True and is_prime(q)==True:
+        n=p*q
+        phi=(p-1)*(q-1)
+        e=smallest_e(phi)
+        d=multiplicative_inverse(e,phi)
+        
+        return [[e,n],[d,n]]
+    
