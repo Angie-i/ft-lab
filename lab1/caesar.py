@@ -1,13 +1,13 @@
-ASCII_MAX = 126                        
+'''ASCII_MAX = 126                        
 ASCII_MIN = 32
 ALF = ASCII_MAX - ASCII_MIN + 1
 def encrypt(plaintext: str, shift: int) -> str: 
-    '''
+    
     Шифровка текста с помощью шифра Цезаря.
     :param plaintext: исходный текст
     :param shift: целое число для сдвига 
     :return: зашифровеный текст
-    '''
+    
     result = ''
     if shift !=0:
         for i in plaintext :                  
@@ -20,11 +20,33 @@ def encrypt(plaintext: str, shift: int) -> str:
         return plaintext
 
 def decrypt(ciphertext: str, shift: int) -> str: 
-    '''
+    
     Дешифрует текст, зашифрованный шифром Цезаря, используя функцию encrypt с отрицательным сдвигом. 
     :param ciphertext: зашифрованный текст 
     :param shift: целое число сдвига использованное для шифровки 
     :return: расшифрованный текст 
-    '''
+    
     return encrypt(ciphertext,-shift)
     
+'''
+ASCII_min = 32
+ASCII_max = 126
+alphabet = ASCII_max - ASCII_min + 1
+
+def encrypt(plaintext: str, shift: int) -> str:
+    result = ''
+    for i in plaintext:
+        num = ord(i) - ASCII_min
+        index =(num+shift) % alphabet
+        num2=ASCII_min + index
+        result +=(chr(num2))
+    return result
+
+def decrypt(ciphertext: str, shift: int) -> str:
+    result = ''
+    for i in ciphertext:
+        num = ord(i) - ASCII_min
+        index =(num-shift)%alphabet
+        num2=ASCII_min + index
+        result +=(chr(num2))
+    return result
