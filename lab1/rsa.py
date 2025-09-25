@@ -32,7 +32,7 @@ def multiplicative_inverse(e, phi):
         coeff_curr = temp - quotient * coeff_curr
 
     if remainder_prev != 1:
-        raise ValueError("обратного нет")
+        raise ValueError("no reverse")
 
    
     d = coeff_prev % phi
@@ -53,6 +53,38 @@ def generate_keypair(p: int, q: int) -> tuple[tuple[int, int], tuple[int, int]]:
         phi=(p-1)*(q-1)
         e=smallest_e(phi)
         d=multiplicative_inverse(e,phi)
-        
         return [[e,n],[d,n]]
+
+def encrypt(public_key: tuple[int, int], text: str) -> list[int]:
+    e, n = public_key
+    cipher = []
+
     
+    if text == "":
+        return []
+
+    for ch in text:
+        m = ord(ch)
+        if m >= n:
+            raise ValueError("no")
+        
+        c = pow(m, e, n)
+        cipher.append(c)
+
+    return cipher
+
+
+    return cipher
+def decrypt(private_key: tuple[int, int], cipher_list: list[int]) -> str:
+    d, n = private_key
+    text = ""
+
+   
+    if len(cipher_list) == 0:
+        return ""
+
+    for c in cipher_list:
+        m = pow(c, d, n)
+        text = text + chr(m)
+
+    return text
