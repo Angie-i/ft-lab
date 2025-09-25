@@ -40,4 +40,4 @@ def hack(ciphertext: str) -> tuple[str, int]:
             res_shift = shift
             res_text = decrypted_text
         shift += 1
-    return best_text, best_shift
+    return res_text, res_shift
