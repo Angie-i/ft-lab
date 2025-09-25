@@ -22,7 +22,7 @@ def hack(ciphertext: str) -> tuple[str, int]:
 
         freq_dec = {}
         for letter in frequency_letter:
-            if total > 0 and letter in counts:
+            if counter > 0 and letter in counts:
                 freq_dec[letter] = counts[letter] / counter * 100
             else:
                 freq_dec[letter] = 0.0
