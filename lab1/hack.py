@@ -10,7 +10,7 @@ def hack(ciphertext: str) -> tuple[str, int]:
         best_shift=0
         best_text=''
         l=len(ciphertext)
-        for x in range(1,27):
+        for x in range(26):
                 decrypted_text = decrypt(ciphertext, x)
                 frequency_decypt={}
                 for x, y in Counter(decrypted_text).items():
@@ -22,4 +22,4 @@ def hack(ciphertext: str) -> tuple[str, int]:
                         best_match=match_quality
                         best_shift=x
                         best_text=decrypted_text
-                return best_text,best_shift
+        return best_text,best_shift
